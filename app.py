@@ -1,27 +1,30 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Temporary user data for login (for demonstration purposes)
-users = {'keyspouse': 'password123'}
-
 @app.route('/')
 def home():
-    return render_template('login.html')
+    return render_template('statement.html')
 
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
-    
-    if username in users and users[username] == password:
-        return redirect(url_for('directory'))
-    else:
-        return "Invalid credentials. Please try again."
+@app.route('/tricare')
+def tricare():
+    return "<h1>Tricare</h1>"
 
-@app.route('/directory')
-def directory():
-    return render_template('directory.html')
+@app.route('/commissary')
+def commissary():
+    return "<h1>Commissary</h1>"
+
+@app.route('/mpf')
+def mpf():
+    return "<h1>MPF</h1>"
+
+@app.route('/itt')
+def itt():
+    return "<h1>ITT</h1>"
+
+@app.route('/local-details')
+def local_details():
+    return "<h1>Local Details and Tips</h1>"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True)
